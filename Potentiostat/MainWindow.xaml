@@ -56,18 +56,9 @@
         </Grid.ColumnDefinitions>
 
         <!-- Chart -->
+
         <oxy:PlotView x:Name="plotView" Model="{Binding MyModel}" Grid.Column="1" 
                                  Margin="20" Background="White" BorderBrush="#FF2196F3"/>
-        <!--<lvc:CartesianChart Name="Chart" Series="{Binding CurrentSeries}" Grid.Column="1" 
-                            Hoverable="True" Zoom="Xy" ZoomingSpeed="1" 
-                            Margin="20" Background="White" BorderBrush="#FF2196F3" BorderThickness="2">
-            <lvc:CartesianChart.AxisY>
-                <lvc:Axis Title="Current (mA)" />
-            </lvc:CartesianChart.AxisY>
-            <lvc:CartesianChart.AxisX>
-                <lvc:Axis Title="Voltage (V)" />
-            </lvc:CartesianChart.AxisX>
-        </lvc:CartesianChart>-->
 
         <!-- Controls on the left side -->
         <StackPanel Grid.Row="0" Grid.Column="0" Margin="20,20,20,0" VerticalAlignment="Top">
@@ -98,9 +89,11 @@
                 </Grid.ColumnDefinitions>
             </Grid>
         </StackPanel>
+        
         <StackPanel Grid.Row="1" Grid.Column="0" Margin="20,20,20,0" VerticalAlignment="Top" Height="126">
             <Button Content="Save Chart as PNG" Click="SaveGraphAsImage_Click"  Width="160" Height="20" FontSize="15"/>
             <Button  Content="Save as CSV" Click="SaveDataAsCsv_Click"  Width="160" Height="20" FontSize="15"/>
+            <Button Content="Clear Chart" Click="ClearGraph_Click" FontSize="15" Width="150" Height="20" />
         </StackPanel>
         <!-- Export buttons on the bottom -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">

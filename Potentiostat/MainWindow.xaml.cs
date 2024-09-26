@@ -69,6 +69,7 @@ namespace Potentiostat
         private OxyPlot.Series.LineSeries _lineSeries;
         private StringBuilder dataBuffer = new StringBuilder();
         private List<Tuple<double, double>> dataPoints = new List<Tuple<double, double>>();
+        String measureData;
         public MainWindow()
         {
             InitializeComponent();
@@ -114,7 +115,7 @@ namespace Potentiostat
             {
                 string data = _serialPort.ReadExisting();
                 Console.WriteLine(data);
-                dataBuffer.Append(data); // Acumula os dados no buffer
+                dataBuffer.Append(data);
 
                 while (dataBuffer.ToString().Contains("\n"))
                 {
@@ -130,10 +131,8 @@ namespace Potentiostat
                     {
                         if (double.TryParse(values[0], out double corrente) && double.TryParse(values[1], out double tensao))
                         {
-                            // Adiciona o ponto à lista de tuplas
                             dataPoints.Add(new Tuple<double, double>(corrente, tensao));
 
-                            // Adiciona o ponto ao gráfico
                             Dispatcher.Invoke(() => AddPoint(tensao, corrente));
                         }
                     }
@@ -151,6 +150,24 @@ namespace Potentiostat
             _lineSeries.Points.Add(new DataPoint(tensao, corrente));
             plotModel.InvalidatePlot(true);
         }
+        private void ClearGraph_Click(object sender, RoutedEventArgs e)
+        {
+            dataPoints.Clear();
+            Dispatcher.Invoke(() => plotModel.Series.Clear());
+
+            plotModel.InvalidatePlot(true);
+            _lineSeries = null;
+
+            _lineSeries = new OxyPlot.Series.LineSeries
+            {
+                Title = "I-V",
+                StrokeThickness = 2,
+                MarkerType = MarkerType.Circle,
+                Color = OxyColors.Black
+            };
+            plotModel.Series.Add(_lineSeries);
+            plotView.Model = plotModel;
+        }
 
         private void ConfigSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -161,7 +178,6 @@ namespace Potentiostat
                 switch (selectedContent)
                 {
                     case "Linear Sweep Voltammetry":
-                        _lineSeries.Points.Clear();
                         UserGrid.Children.Clear();
                         LSV_CreateConfigPanelItems();
                         break;
@@ -176,7 +192,6 @@ namespace Potentiostat
                     default:
 
                         break;
-
                 }
             }
         }
@@ -324,6 +339,8 @@ namespace Potentiostat
                 IsInMeasure = true;
                 _serialPort.Write("0" + "," + LSVtimeStepBox.Text + "," + LSVstepVBox.Text + "," + LSVstartVBox.Text
                     + "," + LSVfinalVBox.Text);
+                measureData = "LSV;scanrate:" + LSVtimeStepBox.Text + ";step size:" + LSVstepVBox.Text + ";initial E:" + LSVstartVBox.Text
+                    + ";final E:" + LSVfinalVBox.Text;
             }
             else MessageBox.Show("You must fill all the parameters and connect to a USB.", "Error");
         }
@@ -555,8 +572,10 @@ namespace Potentiostat
                 MessageBox.Show("Starting measure.");
 
                 IsInMeasure = true;
-                _serialPort.Write("0" + "," + CVtimeStepBox.Text + "," + CVstepVBox.Text + "," + CVstartVBox.Text
+                _serialPort.Write("1" + "," + CVtimeStepBox.Text + "," + CVstepVBox.Text + "," + CVstartVBox.Text
                     + "," + CVfinalVBox.Text + "," + CVpeakV1Box.Text + "," + CVpeakV2Box.Text + "," + CVcycleBox.Text);
+                measureData = "CV;scanrate:" + CVtimeStepBox.Text + ";step size:" + CVstepVBox.Text + ";initial E:" + CVstartVBox.Text
+                    + ";final E:" + CVfinalVBox.Text + ";peak1:" + CVpeakV1Box.Text + ";peak2:" + CVpeakV2Box.Text + ";cycles:" + CVcycleBox.Text;
             }
             else MessageBox.Show("You must fill all the parameters and connect to a USB.", "Error");
         }
@@ -648,6 +667,34 @@ namespace Potentiostat
             Grid.SetColumn(SWVstepVBox, 1);
             UserGrid.Children.Add(SWVstepVBox);
             #endregion
+            #region Time Step
+            SWVtimeStepLabel = new Label
+            {
+                Content = "Frequency (Hz)",
+                FontSize = 17,
+                FontFamily = new System.Windows.Media.FontFamily("Segoe UI"),
+                VerticalAlignment = System.Windows.VerticalAlignment.Center,
+                HorizontalAlignment = System.Windows.HorizontalAlignment.Right
+            };
+
+            SWVtimeStepBox = new TextBox
+            {
+                Width = 100,
+                Margin = new Thickness(5),
+                VerticalAlignment = System.Windows.VerticalAlignment.Center,
+                HorizontalAlignment = System.Windows.HorizontalAlignment.Left,
+                FontSize = 17,
+                FontFamily = new System.Windows.Media.FontFamily("Segoe UI")
+            };
+
+            Grid.SetRow(SWVtimeStepLabel, 3);
+            Grid.SetColumn(SWVtimeStepLabel, 0);
+            UserGrid.Children.Add(SWVtimeStepLabel);
+
+            Grid.SetRow(SWVtimeStepBox, 3);
+            Grid.SetColumn(SWVtimeStepBox, 1);
+            UserGrid.Children.Add(SWVtimeStepBox);
+            #endregion
             #region Amplitude
             SWVAmpLabel = new Label
             {
@@ -676,34 +723,6 @@ namespace Potentiostat
             Grid.SetColumn(SWVAmpBox, 1);
             UserGrid.Children.Add(SWVAmpBox);
             #endregion
-            #region Time Step
-            SWVtimeStepLabel = new Label
-            {
-                Content = "Scan rate (mV/s)",
-                FontSize = 17,
-                FontFamily = new System.Windows.Media.FontFamily("Segoe UI"),
-                VerticalAlignment =System.Windows.VerticalAlignment.Center,
-                HorizontalAlignment =System.Windows.HorizontalAlignment.Right
-            };
-
-            SWVtimeStepBox = new TextBox
-            {
-                Width = 100,
-                Margin = new Thickness(5),
-                VerticalAlignment =System.Windows.VerticalAlignment.Center,
-                HorizontalAlignment =System.Windows.HorizontalAlignment.Left,
-                FontSize = 17,
-                FontFamily = new System.Windows.Media.FontFamily("Segoe UI")
-            };
-
-            Grid.SetRow(SWVtimeStepLabel, 3);
-            Grid.SetColumn(SWVtimeStepLabel, 0);
-            UserGrid.Children.Add(SWVtimeStepLabel);
-
-            Grid.SetRow(SWVtimeStepBox, 3);
-            Grid.SetColumn(SWVtimeStepBox, 1);
-            UserGrid.Children.Add(SWVtimeStepBox);
-            #endregion
 
             SWVsubmitButton = new Button
             {
@@ -723,22 +742,23 @@ namespace Potentiostat
 
         private void SWV_SendMeasureParameters(Object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(CVtimeStepBox.Text) && !string.IsNullOrEmpty(CVstepVBox.Text)
-                && !string.IsNullOrEmpty(CVstartVBox.Text) && !string.IsNullOrEmpty(CVfinalVBox.Text)
-                && !string.IsNullOrEmpty(CVcycleBox.Text) && !string.IsNullOrEmpty(CVpeakV1Box.Text)
-                && !string.IsNullOrEmpty(CVpeakV2Box.Text) && _serialPort != null)
+            if (!string.IsNullOrEmpty(SWVtimeStepBox.Text) && !string.IsNullOrEmpty(SWVstepVBox.Text)
+                && !string.IsNullOrEmpty(SWVstartVBox.Text) && !string.IsNullOrEmpty(SWVfinalVBox.Text)
+                && !string.IsNullOrEmpty(SWVAmpBox.Text) && _serialPort != null)
             {
                 MessageBox.Show("Starting measure.");
 
                 IsInMeasure = true;
-                _serialPort.Write("0" + "," + CVtimeStepBox.Text + "," + CVstepVBox.Text + "," + CVstartVBox.Text
-                    + "," + CVfinalVBox.Text + "," + CVpeakV1Box.Text + "," + CVpeakV2Box.Text + "," + CVcycleBox.Text);
+                _serialPort.Write("2" + "," + SWVtimeStepBox.Text + "," + SWVstepVBox.Text + "," + SWVstartVBox.Text
+                    + "," + SWVfinalVBox.Text + "," + SWVAmpBox.Text);
+                measureData = "SWV;frequency" + SWVtimeStepBox.Text + ";step size:" + SWVstepVBox.Text + ";initial E:" + SWVstartVBox.Text
+                    + ";final E:" + SWVfinalVBox.Text + ";amplitude:" + SWVAmpBox.Text;
             }
             else MessageBox.Show("You must fill all the parameters and connect to a USB.", "Error");
         }
         #endregion
 
-              
+        #region Save as image
         private void SaveGraphAsImage_Click(object sender, RoutedEventArgs e)
         {
             var saveFileDialog = new SaveFileDialog
@@ -746,7 +766,7 @@ namespace Potentiostat
                 Title = "Save Chart as PNG",
                 Filter = "PNG Files (*.png)|*.png",
                 DefaultExt = "png",
-                FileName = "grafico.png"
+                FileName = "image.png"
             };
 
             if (saveFileDialog.ShowDialog() == true)
@@ -762,6 +782,8 @@ namespace Potentiostat
             pngExporter.ExportToFile(plotModel, filePath);
             MessageBox.Show("Chart successfully saved as an image in: " + filePath);
         }
+        #endregion
+        #region Save as csv
         private void SaveDataAsCsv_Click(object sender, RoutedEventArgs e)
         {
             var saveFileDialog = new SaveFileDialog
@@ -769,7 +791,7 @@ namespace Potentiostat
                 Title = "Save data as CSV",
                 Filter = "CSV Files (*.csv)|*.csv",
                 DefaultExt = "csv",
-                FileName = "dados.csv"
+                FileName = "data.csv"
             };
 
             if (saveFileDialog.ShowDialog() == true)
@@ -783,18 +805,17 @@ namespace Potentiostat
         {
             using (var writer = new StreamWriter(filePath))
             {
-                writer.WriteLine("voltage,current");
-                writer.WriteLine($"initial E:{LSVstartVBox.Text};final E:{LSVfinalVBox.Text};step size:{LSVstepVBox.Text};scanrate:{LSVtimeStepBox.Text}");
+                writer.WriteLine(measureData);
 
+                writer.WriteLine("voltage,current");
+                
                 foreach (var point in dataPoints)
                 {
                     writer.WriteLine($"{point.Item1},{point.Item2}");
                 }
             }
         }
-
-
-
+        #endregion
         private void ToggleConnection(object sender, RoutedEventArgs e)
         {
             if (_serialPort != null)
