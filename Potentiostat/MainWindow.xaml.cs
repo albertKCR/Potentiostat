@@ -17,6 +17,7 @@ using WinForms = System.Windows.Forms;
 using Microsoft.Win32;
 using OxyPlot.Wpf;
 using System.Collections.Generic;
+using OxyPlot.Axes;
 
 namespace Potentiostat
 {
@@ -67,6 +68,10 @@ namespace Potentiostat
 
         public PlotModel plotModel { get; set; }
         private OxyPlot.Series.LineSeries _lineSeries;
+
+        public PlotModel plotModel2 { get; set; }
+        private OxyPlot.Series.LineSeries _lineSeries2;
+
         private StringBuilder dataBuffer = new StringBuilder();
         private List<Tuple<double, double>> dataPoints = new List<Tuple<double, double>>();
         String measureData;
@@ -80,17 +85,65 @@ namespace Potentiostat
             {
                 COMselect.Items.Add(ports[i]);
             }
-
+            #region IV chart elements
             plotModel = new PlotModel {};
             _lineSeries = new OxyPlot.Series.LineSeries
             {
                 Title = "I-V",
                 StrokeThickness = 2,
                 MarkerType = MarkerType.Circle,
-                Color = OxyColors.Black
+                Color = OxyColors.RoyalBlue
             };
+
+            var xAxis = new LinearAxis
+            {
+                Position = OxyPlot.Axes.AxisPosition.Bottom,
+                Title = "Voltage",
+                Unit = "V"
+            };
+
+            var yAxis = new LinearAxis
+            {
+                Position = OxyPlot.Axes.AxisPosition.Left,
+                Title = "Current",
+                Unit = "μA"
+            };
+            plotModel.Axes.Add(xAxis);
+            plotModel.Axes.Add(yAxis);
+            #endregion
+
+            #region Voltage x time chart elements
+            plotModel2 = new PlotModel { };
+            _lineSeries2 = new OxyPlot.Series.LineSeries
+            {
+                Title = "I-V",
+                StrokeThickness = 2,
+                MarkerType = MarkerType.Circle,
+                Color = OxyColors.RoyalBlue
+            };
+
+            var yAxisV = new LinearAxis
+            {
+                Position = OxyPlot.Axes.AxisPosition.Left,
+                Title = "Voltage",
+                Unit = "V"
+            };
+            var xAxisV = new LinearAxis
+            {
+                Position = OxyPlot.Axes.AxisPosition.Bottom,
+                Title = "Time",
+                Unit = "s"
+            };
+            plotModel2.Axes.Add(yAxisV);
+            plotModel2.Axes.Add(xAxisV);
+            #endregion
+
+
             plotModel.Series.Add(_lineSeries);
             plotView.Model = plotModel;
+
+            plotModel2.Series.Add(_lineSeries2);
+            VoltagePlotView.Model = plotModel2;
         }
 
         private void InitializeSerialPort()
@@ -144,14 +197,19 @@ namespace Potentiostat
             }
         }
 
-
+        private double time = 0;
         private void AddPoint(double corrente, double tensao)
         {
-            _lineSeries.Points.Add(new DataPoint(tensao, corrente));
+            _lineSeries.Points.Add(new DataPoint(corrente, tensao));
             plotModel.InvalidatePlot(true);
+
+            _lineSeries2.Points.Add(new DataPoint(time, tensao));
+            plotModel2.InvalidatePlot(true);
+            time += 1;
         }
         private void ClearGraph_Click(object sender, RoutedEventArgs e)
         {
+            #region IV
             dataPoints.Clear();
             Dispatcher.Invoke(() => plotModel.Series.Clear());
 
@@ -167,6 +225,24 @@ namespace Potentiostat
             };
             plotModel.Series.Add(_lineSeries);
             plotView.Model = plotModel;
+            #endregion
+
+            #region voltage
+            Dispatcher.Invoke(() => plotModel2.Series.Clear());
+
+            plotModel2.InvalidatePlot(true);
+            _lineSeries2 = null;
+
+            _lineSeries2 = new OxyPlot.Series.LineSeries
+            {
+                Title = "V",
+                StrokeThickness = 2,
+                MarkerType = MarkerType.Circle,
+                Color = OxyColors.Black
+            };
+            plotModel2.Series.Add(_lineSeries2);
+            VoltagePlotView.Model = plotModel2;
+            #endregion
         }
 
         private void ConfigSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -687,11 +763,11 @@ namespace Potentiostat
                 FontFamily = new System.Windows.Media.FontFamily("Segoe UI")
             };
 
-            Grid.SetRow(SWVtimeStepLabel, 3);
+            Grid.SetRow(SWVtimeStepLabel, 4);
             Grid.SetColumn(SWVtimeStepLabel, 0);
             UserGrid.Children.Add(SWVtimeStepLabel);
 
-            Grid.SetRow(SWVtimeStepBox, 3);
+            Grid.SetRow(SWVtimeStepBox, 4);
             Grid.SetColumn(SWVtimeStepBox, 1);
             UserGrid.Children.Add(SWVtimeStepBox);
             #endregion
@@ -715,11 +791,11 @@ namespace Potentiostat
                 FontFamily = new System.Windows.Media.FontFamily("Segoe UI")
             };
 
-            Grid.SetRow(SWVAmpLabel, 4);
+            Grid.SetRow(SWVAmpLabel, 3);
             Grid.SetColumn(SWVAmpLabel, 0);
             UserGrid.Children.Add(SWVAmpLabel);
 
-            Grid.SetRow(SWVAmpBox, 4);
+            Grid.SetRow(SWVAmpBox, 3);
             Grid.SetColumn(SWVAmpBox, 1);
             UserGrid.Children.Add(SWVAmpBox);
             #endregion
@@ -778,7 +854,7 @@ namespace Potentiostat
 
         private void ExportToPng(string filePath)
         {
-            var pngExporter = new PngExporter { Width = 600, Height = 400};
+            var pngExporter = new PngExporter { Width = 1920, Height = 1080};
             pngExporter.ExportToFile(plotModel, filePath);
             MessageBox.Show("Chart successfully saved as an image in: " + filePath);
         }
