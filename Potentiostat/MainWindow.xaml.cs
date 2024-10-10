@@ -75,6 +75,7 @@ namespace Potentiostat
         private StringBuilder dataBuffer = new StringBuilder();
         private List<Tuple<double, double>> dataPoints = new List<Tuple<double, double>>();
         String measureData;
+        private double time = 0;
         public MainWindow()
         {
             InitializeComponent();
@@ -132,7 +133,7 @@ namespace Potentiostat
             {
                 Position = OxyPlot.Axes.AxisPosition.Bottom,
                 Title = "Time",
-                Unit = "s"
+                Unit = "ms"
             };
             plotModel2.Axes.Add(yAxisV);
             plotModel2.Axes.Add(xAxisV);
@@ -197,15 +198,36 @@ namespace Potentiostat
             }
         }
 
-        private double time = 0;
-        private void AddPoint(double corrente, double tensao)
+
+        private void AddPoint(double current, double voltage)
         {
-            _lineSeries.Points.Add(new DataPoint(corrente, tensao));
+            _lineSeries.Points.Add(new DataPoint(voltage, current));
             plotModel.InvalidatePlot(true);
 
-            _lineSeries2.Points.Add(new DataPoint(time, tensao));
+            int timeStep = 1;
+            int voltageStep = 0;
+            if (!string.IsNullOrEmpty(LSVtimeStepBox.Text))
+            {
+                int.TryParse(LSVtimeStepBox.Text, out timeStep);
+                int.TryParse(LSVstepVBox.Text, out voltageStep);
+            } 
+                
+            else if (!string.IsNullOrEmpty(CVtimeStepBox.Text))
+            {
+                int.TryParse(CVtimeStepBox.Text, out timeStep);
+                int.TryParse(CVstepVBox.Text, out voltageStep);
+            }
+
+            else if (!string.IsNullOrEmpty(SWVtimeStepBox.Text))
+            {
+                int.TryParse(SWVtimeStepBox.Text, out timeStep);
+                int.TryParse(SWVstepVBox.Text, out voltageStep);
+            } 
+
+
+            _lineSeries2.Points.Add(new DataPoint(time, voltage));
             plotModel2.InvalidatePlot(true);
-            time += 1;
+            time += (voltageStep * 1000) / timeStep;
         }
         private void ClearGraph_Click(object sender, RoutedEventArgs e)
         {
@@ -221,7 +243,7 @@ namespace Potentiostat
                 Title = "I-V",
                 StrokeThickness = 2,
                 MarkerType = MarkerType.Circle,
-                Color = OxyColors.Black
+                Color = OxyColors.RoyalBlue
             };
             plotModel.Series.Add(_lineSeries);
             plotView.Model = plotModel;
@@ -238,7 +260,7 @@ namespace Potentiostat
                 Title = "V",
                 StrokeThickness = 2,
                 MarkerType = MarkerType.Circle,
-                Color = OxyColors.Black
+                Color = OxyColors.RoyalBlue
             };
             plotModel2.Series.Add(_lineSeries2);
             VoltagePlotView.Model = plotModel2;

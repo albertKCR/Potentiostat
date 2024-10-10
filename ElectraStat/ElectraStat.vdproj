@@ -22,7 +22,7 @@
         "Entry"
         {
         "MsmKey" = "8:_236A3350220092F948BA4321A770E6E6"
-        "OwnerKey" = "8:_AE8FED16A59B47A3928CD67EC9D2D23D"
+        "OwnerKey" = "8:_7AE70C9BA0694F86BD0D06942EDBA38C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -58,7 +58,7 @@
         "Entry"
         {
         "MsmKey" = "8:_24C287DB3F7C6A6FB321E6BCED4D4ED1"
-        "OwnerKey" = "8:_AE8FED16A59B47A3928CD67EC9D2D23D"
+        "OwnerKey" = "8:_7AE70C9BA0694F86BD0D06942EDBA38C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -76,7 +76,7 @@
         "Entry"
         {
         "MsmKey" = "8:_308536C190F2DB9E3B36E9B17EA7440D"
-        "OwnerKey" = "8:_AE8FED16A59B47A3928CD67EC9D2D23D"
+        "OwnerKey" = "8:_7AE70C9BA0694F86BD0D06942EDBA38C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -100,7 +100,7 @@
         "Entry"
         {
         "MsmKey" = "8:_4625CDE6F28A9B0988D68607A82125F5"
-        "OwnerKey" = "8:_AE8FED16A59B47A3928CD67EC9D2D23D"
+        "OwnerKey" = "8:_7AE70C9BA0694F86BD0D06942EDBA38C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -112,7 +112,7 @@
         "Entry"
         {
         "MsmKey" = "8:_599C008686510C3129AF600AE7A4491E"
-        "OwnerKey" = "8:_AE8FED16A59B47A3928CD67EC9D2D23D"
+        "OwnerKey" = "8:_7AE70C9BA0694F86BD0D06942EDBA38C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -124,7 +124,7 @@
         "Entry"
         {
         "MsmKey" = "8:_5C0955D6E9BC159A2F2F928088DE1C57"
-        "OwnerKey" = "8:_AE8FED16A59B47A3928CD67EC9D2D23D"
+        "OwnerKey" = "8:_7AE70C9BA0694F86BD0D06942EDBA38C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -142,7 +142,7 @@
         "Entry"
         {
         "MsmKey" = "8:_5F775B5A7580C215435E824A3FE74F70"
-        "OwnerKey" = "8:_AE8FED16A59B47A3928CD67EC9D2D23D"
+        "OwnerKey" = "8:_7AE70C9BA0694F86BD0D06942EDBA38C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -172,7 +172,7 @@
         "Entry"
         {
         "MsmKey" = "8:_6F13D47D0B6990731F0C8D984AD7A732"
-        "OwnerKey" = "8:_AE8FED16A59B47A3928CD67EC9D2D23D"
+        "OwnerKey" = "8:_7AE70C9BA0694F86BD0D06942EDBA38C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -190,12 +190,12 @@
         "Entry"
         {
         "MsmKey" = "8:_7927D112D1670F742954B2812646CD7C"
-        "OwnerKey" = "8:_AE8FED16A59B47A3928CD67EC9D2D23D"
+        "OwnerKey" = "8:_7AE70C9BA0694F86BD0D06942EDBA38C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_7B57E974F5B74EDCA587BE6F99BD2124"
+        "MsmKey" = "8:_7AE70C9BA0694F86BD0D06942EDBA38C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -208,7 +208,7 @@
         "Entry"
         {
         "MsmKey" = "8:_884A1797737104F0F2F3221C32401E56"
-        "OwnerKey" = "8:_AE8FED16A59B47A3928CD67EC9D2D23D"
+        "OwnerKey" = "8:_7AE70C9BA0694F86BD0D06942EDBA38C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -220,13 +220,13 @@
         "Entry"
         {
         "MsmKey" = "8:_9088C6D5D958AD473114260806DC07C2"
-        "OwnerKey" = "8:_AE8FED16A59B47A3928CD67EC9D2D23D"
+        "OwnerKey" = "8:_7AE70C9BA0694F86BD0D06942EDBA38C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_92300F0AC239479F5448B61136C90268"
-        "OwnerKey" = "8:_AE8FED16A59B47A3928CD67EC9D2D23D"
+        "OwnerKey" = "8:_7AE70C9BA0694F86BD0D06942EDBA38C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -244,37 +244,31 @@
         "Entry"
         {
         "MsmKey" = "8:_9F0378BC7B81DAFB39F783888C7BC01A"
-        "OwnerKey" = "8:_AE8FED16A59B47A3928CD67EC9D2D23D"
+        "OwnerKey" = "8:_7AE70C9BA0694F86BD0D06942EDBA38C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_9F9BDA61F78F675CE3B7E7EE73F20B21"
-        "OwnerKey" = "8:_AE8FED16A59B47A3928CD67EC9D2D23D"
+        "OwnerKey" = "8:_7AE70C9BA0694F86BD0D06942EDBA38C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_AC1415D0A1CA96E5B912353091EA594A"
-        "OwnerKey" = "8:_AE8FED16A59B47A3928CD67EC9D2D23D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_AE8FED16A59B47A3928CD67EC9D2D23D"
-        "OwnerKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_7AE70C9BA0694F86BD0D06942EDBA38C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_B2FFAE37BE7A2A668B081009E5298363"
-        "OwnerKey" = "8:_AE8FED16A59B47A3928CD67EC9D2D23D"
+        "OwnerKey" = "8:_7AE70C9BA0694F86BD0D06942EDBA38C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_B96A2C48B6D57311470F67BE459256CA"
-        "OwnerKey" = "8:_AE8FED16A59B47A3928CD67EC9D2D23D"
+        "OwnerKey" = "8:_7AE70C9BA0694F86BD0D06942EDBA38C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -286,7 +280,7 @@
         "Entry"
         {
         "MsmKey" = "8:_D097D4A035007BA64519CC0911BB623C"
-        "OwnerKey" = "8:_AE8FED16A59B47A3928CD67EC9D2D23D"
+        "OwnerKey" = "8:_7AE70C9BA0694F86BD0D06942EDBA38C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -310,7 +304,7 @@
         "Entry"
         {
         "MsmKey" = "8:_D687A0FCF4D6128B15E289B005AD4AD4"
-        "OwnerKey" = "8:_AE8FED16A59B47A3928CD67EC9D2D23D"
+        "OwnerKey" = "8:_7AE70C9BA0694F86BD0D06942EDBA38C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -334,13 +328,19 @@
         "Entry"
         {
         "MsmKey" = "8:_D781BCA5FB363DFC3522CBB251B6B74D"
-        "OwnerKey" = "8:_AE8FED16A59B47A3928CD67EC9D2D23D"
+        "OwnerKey" = "8:_7AE70C9BA0694F86BD0D06942EDBA38C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D857331F7E1D4249AC2A792DC42F0BD9"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_ECD0C56352F054A5848E9F4A7A206979"
-        "OwnerKey" = "8:_AE8FED16A59B47A3928CD67EC9D2D23D"
+        "OwnerKey" = "8:_7AE70C9BA0694F86BD0D06942EDBA38C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -358,7 +358,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_AE8FED16A59B47A3928CD67EC9D2D23D"
+        "OwnerKey" = "8:_7AE70C9BA0694F86BD0D06942EDBA38C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -505,6 +505,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -521,6 +529,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -858,26 +874,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7B57E974F5B74EDCA587BE6F99BD2124"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\Downloads\\appicon.ico"
-            "TargetName" = "8:appicon.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_F1C032420D7747B08B0C5BDB86A11253"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_884A1797737104F0F2F3221C32401E56"
@@ -1221,6 +1217,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D857331F7E1D4249AC2A792DC42F0BD9"
+            {
+            "SourcePath" = "8:..\\..\\..\\..\\Desktop\\appicon.ico"
+            "TargetName" = "8:appicon.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_F1C032420D7747B08B0C5BDB86A11253"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_ECD0C56352F054A5848E9F4A7A206979"
             {
             "AssemblyRegister" = "3:1"
@@ -1326,7 +1342,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:_7B57E974F5B74EDCA587BE6F99BD2124"
+        "ARPPRODUCTICON" = "8:_D857331F7E1D4249AC2A792DC42F0BD9"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -1429,7 +1445,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_810833ECB87C450CB984BF27A9D05CA5"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C08E03066F604E02A34A0B93E87EE17E"
             {
             "Name" = "8:ElectraStat"
             "Arguments" = "8:"
@@ -1437,10 +1453,10 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_AE8FED16A59B47A3928CD67EC9D2D23D"
+            "Target" = "8:_7AE70C9BA0694F86BD0D06942EDBA38C"
             "Folder" = "8:_CD7E8FB370274467AC1E1A280A66E0CD"
             "WorkingFolder" = "8:_CD7E8FB370274467AC1E1A280A66E0CD"
-            "Icon" = "8:_7B57E974F5B74EDCA587BE6F99BD2124"
+            "Icon" = "8:_D857331F7E1D4249AC2A792DC42F0BD9"
             "Feature" = "8:"
             }
         }
@@ -1842,9 +1858,9 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_AE8FED16A59B47A3928CD67EC9D2D23D"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_7AE70C9BA0694F86BD0D06942EDBA38C"
             {
-            "SourcePath" = "8:"
+            "SourcePath" = "8:..\\Potentiostat\\obj\\Release\\Potentiostat.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_F1C032420D7747B08B0C5BDB86A11253"
