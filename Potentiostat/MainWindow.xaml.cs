@@ -267,6 +267,44 @@ namespace Potentiostat
             #endregion
         }
 
+        private void ClearGraph()
+        {
+            #region IV
+            dataPoints.Clear();
+            Dispatcher.Invoke(() => plotModel.Series.Clear());
+
+            plotModel.InvalidatePlot(true);
+            _lineSeries = null;
+
+            _lineSeries = new OxyPlot.Series.LineSeries
+            {
+                Title = "I-V",
+                StrokeThickness = 2,
+                MarkerType = MarkerType.Circle,
+                Color = OxyColors.RoyalBlue
+            };
+            plotModel.Series.Add(_lineSeries);
+            plotView.Model = plotModel;
+            #endregion
+
+            #region voltage
+            Dispatcher.Invoke(() => plotModel2.Series.Clear());
+
+            plotModel2.InvalidatePlot(true);
+            _lineSeries2 = null;
+
+            _lineSeries2 = new OxyPlot.Series.LineSeries
+            {
+                Title = "V",
+                StrokeThickness = 2,
+                MarkerType = MarkerType.Circle,
+                Color = OxyColors.RoyalBlue
+            };
+            plotModel2.Series.Add(_lineSeries2);
+            VoltagePlotView.Model = plotModel2;
+            #endregion
+        }
+
         private void ConfigSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (ConfigSelect.SelectedItem is ComboBoxItem selectedItem)
@@ -428,11 +466,13 @@ namespace Potentiostat
 
         private void LSV_SendMeasureParameters(Object sender, RoutedEventArgs e)
         {
+            time = 0;
+            ClearGraph();
             if (!string.IsNullOrEmpty(LSVtimeStepBox.Text) && !string.IsNullOrEmpty(LSVstepVBox.Text)
                 && !string.IsNullOrEmpty(LSVstartVBox.Text) && !string.IsNullOrEmpty(LSVfinalVBox.Text)
                 && _serialPort != null)
             {
-                MessageBox.Show("Starting measure.");
+                //MessageBox.Show("Starting measure.");
 
                 IsInMeasure = true;
                 _serialPort.Write("0" + "," + LSVtimeStepBox.Text + "," + LSVstepVBox.Text + "," + LSVstartVBox.Text
@@ -662,12 +702,14 @@ namespace Potentiostat
 
         private void CV_SendMeasureParameters(Object sender, RoutedEventArgs e)
         {
+            ClearGraph();
+            time = 0;
             if (!string.IsNullOrEmpty(CVtimeStepBox.Text) && !string.IsNullOrEmpty(CVstepVBox.Text)
                 && !string.IsNullOrEmpty(CVstartVBox.Text) && !string.IsNullOrEmpty(CVfinalVBox.Text)
                 && !string.IsNullOrEmpty(CVcycleBox.Text) && !string.IsNullOrEmpty(CVpeakV1Box.Text)
                 && !string.IsNullOrEmpty(CVpeakV2Box.Text) && _serialPort != null)
             {
-                MessageBox.Show("Starting measure.");
+                //MessageBox.Show("Starting measure.");
 
                 IsInMeasure = true;
                 _serialPort.Write("1" + "," + CVtimeStepBox.Text + "," + CVstepVBox.Text + "," + CVstartVBox.Text
@@ -681,6 +723,7 @@ namespace Potentiostat
         #region SWV methods
         private void SWV_CreateConfigPanelItems()
         {
+            time = 0;
             #region Initial Voltage
             SWVstartVLabel = new Label
             {
@@ -840,11 +883,13 @@ namespace Potentiostat
 
         private void SWV_SendMeasureParameters(Object sender, RoutedEventArgs e)
         {
+            time = 0;
+            ClearGraph();
             if (!string.IsNullOrEmpty(SWVtimeStepBox.Text) && !string.IsNullOrEmpty(SWVstepVBox.Text)
                 && !string.IsNullOrEmpty(SWVstartVBox.Text) && !string.IsNullOrEmpty(SWVfinalVBox.Text)
                 && !string.IsNullOrEmpty(SWVAmpBox.Text) && _serialPort != null)
             {
-                MessageBox.Show("Starting measure.");
+                //MessageBox.Show("Starting measure.");
 
                 IsInMeasure = true;
                 _serialPort.Write("2" + "," + SWVtimeStepBox.Text + "," + SWVstepVBox.Text + "," + SWVstartVBox.Text
