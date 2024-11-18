@@ -14,7 +14,7 @@
         Height="660"
         MinWidth="1024"
         MinHeight="660"
-        Background="#FFFAFAFA">
+        Background="White">
 
     <Window.Resources>
         <!-- Define button style for modern look -->
