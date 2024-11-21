@@ -206,28 +206,39 @@ namespace Potentiostat
 
             int timeStep = 1;
             int voltageStep = 0;
-            if (!string.IsNullOrEmpty(LSVtimeStepBox.Text))
+            if (!(LSVtimeStepBox == null))
             {
                 int.TryParse(LSVtimeStepBox.Text, out timeStep);
                 int.TryParse(LSVstepVBox.Text, out voltageStep);
-            } 
+                _lineSeries2.Points.Add(new DataPoint(time, voltage));
+                plotModel2.InvalidatePlot(true);
+                time += (voltageStep * 1000) / timeStep;
+            }
                 
-            else if (!string.IsNullOrEmpty(CVtimeStepBox.Text))
+            else if (!(CVtimeStepBox == null))
             {
                 int.TryParse(CVtimeStepBox.Text, out timeStep);
                 int.TryParse(CVstepVBox.Text, out voltageStep);
+                _lineSeries2.Points.Add(new DataPoint(time, voltage));
+                plotModel2.InvalidatePlot(true);
+                time += (voltageStep * 1000) / timeStep;
             }
 
-            else if (!string.IsNullOrEmpty(SWVtimeStepBox.Text))
+            else if (!(SWVtimeStepBox == null))
             {
                 int.TryParse(SWVtimeStepBox.Text, out timeStep);
                 int.TryParse(SWVstepVBox.Text, out voltageStep);
+                _lineSeries2.Points.Add(new DataPoint(time, voltage));
+                plotModel2.InvalidatePlot(true);
+                time += (1000 / timeStep) / 2;
             } 
+        }
 
-
-            _lineSeries2.Points.Add(new DataPoint(time, voltage));
-            plotModel2.InvalidatePlot(true);
-            time += (voltageStep * 1000) / timeStep;
+        private void DestroyItems()
+        {
+            LSVtimeStepBox = null;
+            CVtimeStepBox = null;
+            SWVtimeStepBox = null;
         }
         private void ClearGraph_Click(object sender, RoutedEventArgs e)
         {
@@ -315,14 +326,17 @@ namespace Potentiostat
                 {
                     case "Linear Sweep Voltammetry":
                         UserGrid.Children.Clear();
+                        DestroyItems();
                         LSV_CreateConfigPanelItems();
                         break;
                     case "Cyclic Voltammetry":
                         UserGrid.Children.Clear();
+                        DestroyItems();
                         CV_CreateConfigPanelItems();
                         break;
                     case "Square Wave Voltammetry":
                         UserGrid.Children.Clear();
+                        DestroyItems();
                         SWV_CreateConfigPanelItems();
                         break;
                     default:
@@ -808,34 +822,6 @@ namespace Potentiostat
             Grid.SetColumn(SWVstepVBox, 1);
             UserGrid.Children.Add(SWVstepVBox);
             #endregion
-            #region Time Step
-            SWVtimeStepLabel = new Label
-            {
-                Content = "Frequency (Hz)",
-                FontSize = 17,
-                FontFamily = new System.Windows.Media.FontFamily("Segoe UI"),
-                VerticalAlignment = System.Windows.VerticalAlignment.Center,
-                HorizontalAlignment = System.Windows.HorizontalAlignment.Right
-            };
-
-            SWVtimeStepBox = new TextBox
-            {
-                Width = 100,
-                Margin = new Thickness(5),
-                VerticalAlignment = System.Windows.VerticalAlignment.Center,
-                HorizontalAlignment = System.Windows.HorizontalAlignment.Left,
-                FontSize = 17,
-                FontFamily = new System.Windows.Media.FontFamily("Segoe UI")
-            };
-
-            Grid.SetRow(SWVtimeStepLabel, 4);
-            Grid.SetColumn(SWVtimeStepLabel, 0);
-            UserGrid.Children.Add(SWVtimeStepLabel);
-
-            Grid.SetRow(SWVtimeStepBox, 4);
-            Grid.SetColumn(SWVtimeStepBox, 1);
-            UserGrid.Children.Add(SWVtimeStepBox);
-            #endregion
             #region Amplitude
             SWVAmpLabel = new Label
             {
@@ -863,6 +849,35 @@ namespace Potentiostat
             Grid.SetRow(SWVAmpBox, 3);
             Grid.SetColumn(SWVAmpBox, 1);
             UserGrid.Children.Add(SWVAmpBox);
+            #endregion
+
+            #region Time Step
+            SWVtimeStepLabel = new Label
+            {
+                Content = "Frequency (Hz)",
+                FontSize = 17,
+                FontFamily = new System.Windows.Media.FontFamily("Segoe UI"),
+                VerticalAlignment = System.Windows.VerticalAlignment.Center,
+                HorizontalAlignment = System.Windows.HorizontalAlignment.Right
+            };
+
+            SWVtimeStepBox = new TextBox
+            {
+                Width = 100,
+                Margin = new Thickness(5),
+                VerticalAlignment = System.Windows.VerticalAlignment.Center,
+                HorizontalAlignment = System.Windows.HorizontalAlignment.Left,
+                FontSize = 17,
+                FontFamily = new System.Windows.Media.FontFamily("Segoe UI")
+            };
+
+            Grid.SetRow(SWVtimeStepLabel, 4);
+            Grid.SetColumn(SWVtimeStepLabel, 0);
+            UserGrid.Children.Add(SWVtimeStepLabel);
+
+            Grid.SetRow(SWVtimeStepBox, 4);
+            Grid.SetColumn(SWVtimeStepBox, 1);
+            UserGrid.Children.Add(SWVtimeStepBox);
             #endregion
 
             SWVsubmitButton = new Button
