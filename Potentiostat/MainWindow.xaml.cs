@@ -361,6 +361,7 @@ namespace Potentiostat
 
             LSVstartVBox = new TextBox
             {
+                Text = "-0.5",
                 Width = 100,
                 Margin = new Thickness(5),
                 VerticalAlignment = System.Windows.VerticalAlignment.Center,
@@ -389,6 +390,7 @@ namespace Potentiostat
 
             LSVfinalVBox = new TextBox
             {
+                Text = "1",
                 Width = 100,
                 Margin = new Thickness(5),
                 VerticalAlignment = System.Windows.VerticalAlignment.Center,
@@ -417,6 +419,7 @@ namespace Potentiostat
 
             LSVstepVBox = new TextBox
             {
+                Text = "15",
                 Width = 100,
                 Margin = new Thickness(5),
                 VerticalAlignment = System.Windows.VerticalAlignment.Center,
@@ -445,6 +448,7 @@ namespace Potentiostat
 
             LSVtimeStepBox = new TextBox
             {
+                Text = "100",
                 Width = 100,
                 Margin = new Thickness(5),
                 VerticalAlignment = System.Windows.VerticalAlignment.Center,
@@ -464,7 +468,7 @@ namespace Potentiostat
 
             LSVsubmitButton = new Button
             {
-                Content = "Submit",
+                Content = "Start",
                 Width = 150,
                 FontSize = 15,
                 FontFamily = new System.Windows.Media.FontFamily("Segoe UI"),
@@ -512,6 +516,7 @@ namespace Potentiostat
 
             CVstartVBox = new TextBox
             {
+                Text = "-0.5",
                 Width = 100,
                 Margin = new Thickness(5),
                 VerticalAlignment = System.Windows.VerticalAlignment.Center,
@@ -540,6 +545,7 @@ namespace Potentiostat
 
             CVpeakV1Box = new TextBox
             {
+                Text = "0.5",
                 Width = 100,
                 Margin = new Thickness(5),
                 VerticalAlignment = System.Windows.VerticalAlignment.Center,
@@ -568,6 +574,7 @@ namespace Potentiostat
 
             CVpeakV2Box = new TextBox
             {
+                Text = "-0.3",
                 Width = 100,
                 Margin = new Thickness(5),
                 VerticalAlignment =System.Windows.VerticalAlignment.Center,
@@ -596,6 +603,7 @@ namespace Potentiostat
 
             CVfinalVBox = new TextBox
             {
+                Text = "0.3",
                 Width = 100,
                 Margin = new Thickness(5),
                 VerticalAlignment =System.Windows.VerticalAlignment.Center,
@@ -624,6 +632,7 @@ namespace Potentiostat
 
             CVstepVBox = new TextBox
             {
+                Text = "15",
                 Width = 100,
                 Margin = new Thickness(5),
                 VerticalAlignment =System.Windows.VerticalAlignment.Center,
@@ -652,6 +661,7 @@ namespace Potentiostat
 
             CVtimeStepBox = new TextBox
             {
+                Text = "100",
                 Width = 100,
                 Margin = new Thickness(5),
                 VerticalAlignment =System.Windows.VerticalAlignment.Center,
@@ -680,6 +690,7 @@ namespace Potentiostat
 
             CVcycleBox = new TextBox
             {
+                Text = "1",
                 Width = 100,
                 Margin = new Thickness(5),
                 VerticalAlignment =System.Windows.VerticalAlignment.Center,
@@ -700,7 +711,7 @@ namespace Potentiostat
 
             CVsubmitButton = new Button
             {
-                Content = "Submit",
+                Content = "Start",
                 Width = 150,
                 FontSize = 15,
                 FontFamily = new System.Windows.Media.FontFamily("Segoe UI"),
@@ -750,6 +761,7 @@ namespace Potentiostat
 
             SWVstartVBox = new TextBox
             {
+                Text = "-0.3",
                 Width = 100,
                 Margin = new Thickness(5),
                 VerticalAlignment =System.Windows.VerticalAlignment.Center,
@@ -778,6 +790,7 @@ namespace Potentiostat
 
             SWVfinalVBox = new TextBox
             {
+                Text = "0.7",
                 Width = 100,
                 Margin = new Thickness(5),
                 VerticalAlignment =System.Windows.VerticalAlignment.Center,
@@ -806,6 +819,7 @@ namespace Potentiostat
 
             SWVstepVBox = new TextBox
             {
+                Text = "5",
                 Width = 100,
                 Margin = new Thickness(5),
                 VerticalAlignment =System.Windows.VerticalAlignment.Center,
@@ -834,6 +848,7 @@ namespace Potentiostat
 
             SWVAmpBox = new TextBox
             {
+                Text = "20",
                 Width = 100,
                 Margin = new Thickness(5),
                 VerticalAlignment =System.Windows.VerticalAlignment.Center,
@@ -863,6 +878,7 @@ namespace Potentiostat
 
             SWVtimeStepBox = new TextBox
             {
+                Text = "25",
                 Width = 100,
                 Margin = new Thickness(5),
                 VerticalAlignment = System.Windows.VerticalAlignment.Center,
@@ -882,7 +898,7 @@ namespace Potentiostat
 
             SWVsubmitButton = new Button
             {
-                Content = "Submit",
+                Content = "Start",
                 Width = 150,
                 FontSize = 15,
                 FontFamily = new System.Windows.Media.FontFamily("Segoe UI"),
@@ -936,6 +952,7 @@ namespace Potentiostat
 
         private void ExportToPng(string filePath)
         {
+            plotModel.Background = OxyColors.White;
             var pngExporter = new PngExporter { Width = 1920, Height = 1080};
             pngExporter.ExportToFile(plotModel, filePath);
             MessageBox.Show("Chart successfully saved as an image in: " + filePath);
